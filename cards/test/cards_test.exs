@@ -6,6 +6,12 @@ defmodule CardsTest do
     assert length(Cards.create_deck()) == 20
   end
 
+  test "cards are shuffled" do
+    deck = Cards.create_deck()
+    shuffledDeck = Cards.shuffle(deck)
+    refute(deck == shuffledDeck)
+  end
+
   test "simple truth" do
     assert 1 + 1 == 2
   end
