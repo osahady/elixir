@@ -14,10 +14,14 @@ defmodule Identicon do
     hex_list
     |> Enum.chunk_every(3)
     |> List.delete_at(5)
+    |> mirror_row()
   end
 
   def mirror_row(list) do
-    list = Enum.reverse(list)
+    for row <- list do
+      [first, second | _] = row
+      row ++ [second, first]
+    end
   end
 
   def pick_color(%Identicon.Image{hex: [r, g, b | _]} = image) do
