@@ -11,13 +11,20 @@ defmodule Identicon do
   end
 
   def build_grid(%Identicon.Image{hex: hex_list} = image) do
-    hex_list
-    |> Enum.chunk_every(3)
-    |> List.delete_at(5)
+    grid =
+      hex_list
+      |> Enum.chunk_every(3)
+      |> List.delete_at(5)
+      |> Enum.map(&mirror_row/1)
+      |> List.flatten()
+      |> Enum.with_index()
+
+    %Identicon.Image{image | grid: grid}
   end
 
-  def mirror_row(list) do
-    list = Enum.reverse(list)
+  def mirror_row(row) do
+    [first, second | _] = row
+    row ++ [second, first]
   end
 
   def pick_color(%Identicon.Image{hex: [r, g, b | _]} = image) do
