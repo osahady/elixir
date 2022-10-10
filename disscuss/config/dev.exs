@@ -3,8 +3,9 @@ import Config
 # Configure your database
 config :disscuss, Disscuss.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "doyouknow",
   hostname: "localhost",
+  port: "5433",
   database: "disscuss_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
