@@ -27,7 +27,8 @@ config :disscuss, DisscussWeb.Endpoint,
   secret_key_base: "ZuQC8v3UjmKJDLBGruXb+6MAhSg7o3D72Rfc3qbWVudh/iggj+JG+UrZZ61N+yBn",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    # esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 # ## SSL Support
