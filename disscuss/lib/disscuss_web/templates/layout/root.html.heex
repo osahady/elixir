@@ -10,12 +10,12 @@
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body>
-    <nav class="ml-32 p-8">
+    <nav class=" py-8 bg-sky-400">
       <div>
-        <a href="#" >Disscussions</a>
+        <a class="text-white text-lg font-bold md:mx-32" href="#" >Disscussions</a>
       </div>
     </nav>
-    <div class="flex flex-col justify-center items-center mx-32 bg-slate-50 py-16">
+    <div class="flex flex-col justify-center items-center md:mx-32 bg-slate-50 py-16">
       <%= @inner_content %>
     </div>
   </body>
