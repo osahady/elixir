@@ -3,15 +3,15 @@ defmodule Disscuss.Topic do
   import Ecto.Changeset
 
   schema "topics" do
-    field :topic, :string
+    field :title, :string
 
     timestamps()
   end
 
   @doc false
-  def changeset(topic, attrs) do
-    topic
-    |> cast(attrs, [:topic])
-    |> validate_required([:topic])
+  def changeset(record, attrs \\ %{}) do
+    record
+    |> cast(attrs, [:title])
+    |> validate_required([:title])
   end
 end
