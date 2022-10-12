@@ -6,6 +6,6 @@ defmodule HelloWeb.HelloController do
   end
 
   def show(conn, %{"person" => val}) do
-      render(conn, "show.html", variable: val)
+    render(conn, "show.html", variable: val)
   end
 end
