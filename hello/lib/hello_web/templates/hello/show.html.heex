@@ -1,5 +1,7 @@
 <section class="phx-hero">
+  <h1> <%= @variable2 %> </h1>
   <h2>Hello <%= @variable %> </h2>
+
   <%= link "Welcome Page!", to: Routes.page_path(@conn, :index) %>
   <br/>
   <%= link "Home", to: Routes.hello_path(@conn, :index) %>
