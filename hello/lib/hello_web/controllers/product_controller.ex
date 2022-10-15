@@ -27,7 +27,11 @@ defmodule HelloWeb.ProductController do
   end
 
   def show(conn, %{"id" => id}) do
-    product = Catalog.get_product!(id)
+    product = 
+      id
+      |> Catalog.get_product!()
+      |> Catalog.inc_page_views()
+      
     render(conn, "show.html", product: product)
   end
 
@@ -40,6 +44,7 @@ defmodule HelloWeb.ProductController do
   def update(conn, %{"id" => id, "product" => product_params}) do
     product = Catalog.get_product!(id)
 
+    # case Catalog.update_product(product, %{views: product.views + 1}) do
     case Catalog.update_product(product, product_params) do
       {:ok, product} ->
         conn
