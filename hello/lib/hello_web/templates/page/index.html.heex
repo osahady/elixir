@@ -3,6 +3,21 @@
   <p>Peace of mind from prototype to production</p>
 </section>
 
+<section>
+  <table>
+  <tr>
+    <th>Number</th>
+    <th>Power</th>
+  </tr>
+<%= for number <- 1..10 do %>
+  <tr>
+    <td><%= number %></td>
+    <td><%= number * number %></td>
+  </tr>
+<% end %>
+</table>
+</section>
+
 <section class="row">
   <article class="column">
     <h2>Resources</h2>
