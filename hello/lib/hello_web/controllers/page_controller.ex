@@ -7,10 +7,15 @@ defmodule HelloWeb.PageController do
   end
   
   def index(conn, _params) do
-    conn
-    |> put_flash(:info, "سبحان الله والحمد لله ولا إله إلا الله والله أكبر")
-    |> put_flash(:error, "من حلف بغير الله فقد كفر أو أشرك")
-    |> redirect(to: Routes.page_path(conn, :redirect_test))
+    pages = [%{title: "foo"}, %{title: "bar"}]
+
+    render(conn, "index.json", pages: pages)
+
+    # conn
+    # |> put_flash(:info, "سبحان الله والحمد لله ولا إله إلا الله والله أكبر")
+    # |> put_flash(:error, "من حلف بغير الله فقد كفر أو أشرك")
+    # |> redirect(to: Routes.page_path(conn, :redirect_test))
+
     # redirect(conn, to: Routes.page_path(conn, :redirect_test))
 
     # redirect(conn, external: "https://aljazeera.net")
