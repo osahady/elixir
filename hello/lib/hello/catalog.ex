@@ -35,7 +35,11 @@ defmodule Hello.Catalog do
       ** (Ecto.NoResultsError)
 
   """
-  def get_product!(id), do: Repo.get!(Product, id)
+  def get_product!(id) do
+    Product
+    |> Repo.get(id)
+    |> Repo.preload(:categories)
+  end
 
   @doc """
   Creates a product.
@@ -51,7 +55,7 @@ defmodule Hello.Catalog do
   """
   def create_product(attrs \\ %{}) do
     %Product{}
-    |> Product.changeset(attrs)
+    |> change_product(attrs)
     |> Repo.insert()
   end
 
@@ -69,7 +73,7 @@ defmodule Hello.Catalog do
   """
   def update_product(%Product{} = product, attrs) do
     product
-    |> Product.changeset(attrs)
+    |> change_product(attrs)
     |> Repo.update()
   end
 
@@ -99,7 +103,12 @@ defmodule Hello.Catalog do
 
   """
   def change_product(%Product{} = product, attrs \\ %{}) do
-    Product.changeset(product, attrs)
+    categories = list_categories_by_id(attrs["category_id"])
+
+    product
+    |> Repo.preload(:categories)
+    |> Product.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:categories, categories)
   end
 
   def inc_page_views(%Product{} = product) do
@@ -204,4 +213,11 @@ defmodule Hello.Catalog do
   def change_category(%Category{} = category, attrs \\ %{}) do
     Category.changeset(category, attrs)
   end
+
+  def list_categories_by_id(nil), do: []
+  def list_categories_by_id(category_ids) do
+    Repo.all(from c in Category, where: c.id in ^category_ids)
+  end
+
+  
 end
