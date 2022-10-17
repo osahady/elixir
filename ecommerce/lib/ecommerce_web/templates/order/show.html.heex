@@ -1,4 +1,4 @@
-<h1>Show Order</h1>
+<h1>Thank you for your order!</h1>
 
 <ul>
 
@@ -7,12 +7,18 @@
     <%= @order.user_uuid %>
   </li>
 
+  <%= for item <- @order.line_items do %>
+    <li>
+      <strong> <%= item.product.title %> </strong>
+     ( <%= item.quantity %>) - <%= EcommerceWeb.CartView.currency_to_str(item.price) %>
+    </li>
+  <% end %>
+
   <li>
     <strong>Total price:</strong>
-    <%= @order.total_price %>
+    <%= EcommerceWeb.CartView.currency_to_str(@order.total_price) %>
   </li>
 
 </ul>
+<span><%= link "Back", to: Routes.cart_path(@conn, :show) %></span>
 
-<span><%= link "Edit", to: Routes.order_path(@conn, :edit, @order) %></span> |
-<span><%= link "Back", to: Routes.order_path(@conn, :index) %></span>
