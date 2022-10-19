@@ -31,8 +31,10 @@ if config_env() == :prod do
   maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
 
   config :ecommerce, Ecommerce.Repo,
-    # ssl: true,
-    url: database_url,
+    adapter: Ecto.Adapters.Postgres,
+    url:  "${DATABASE_URL}",
+    database="",
+    ssl: true,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
     socket_options: maybe_ipv6
 
