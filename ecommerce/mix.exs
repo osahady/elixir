@@ -49,6 +49,7 @@ defmodule Ecommerce.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:distillery, "~> 2.1"},
       {:ex_doc, "~> 0.28.6"}
     ]
   end
