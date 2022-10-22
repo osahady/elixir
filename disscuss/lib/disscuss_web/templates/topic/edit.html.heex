@@ -1,0 +1,16 @@
+<%!-- <h1>Edit Post</h1>
+
+<%= render "new.html", Map.put(assigns, :action, Routes.topic_path(@conn, :update, @topic)) %>
+
+<span><%= link "Back", to: Routes.topic_path(@conn, :index) %></span> --%>
+
+<%= form_for @changeset, Routes.topic_path(@conn, :update, @topic.id), fn f ->  %>
+  <div>
+    <%= text_input f, :title, placeholder: "Title", class: "rounded" %>
+    <%= error_tag f, :title %>
+  </div>
+  <%= submit "Save Topic", class: "bg-sky-500 px-4 py-2 text-white rounded mt-4" %>
+<% end %>
+
+name: <%= @topic.title %>
+id: <%= @topic.id %>
