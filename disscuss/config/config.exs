@@ -60,3 +60,19 @@ config :tailwind, version: "3.1.8", default: [
   ),
   cd: Path.expand("../assets", __DIR__)
 ]
+
+config :ueberauth, Ueberauth,
+  providers: [
+    github: {Ueberauth.Strategy.Github, []}
+  ]
+
+  config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET")
+
+  # config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  # client_id: {:system, "GITHUB_CLIENT_ID"},
+  # client_secret: {:system, "GITHUB_CLIENT_SECRET"}
+
+#Iv1.29fa9414a681a8c6
+#d2b9eadd39e648ab751ed8a2ea5adf73c1d52920

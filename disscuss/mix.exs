@@ -20,7 +20,7 @@ defmodule Disscuss.MixProject do
   def application do
     [
       mod: {Disscuss.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ueberauth, :ueberauth_github]
     ]
   end
 
@@ -49,6 +49,8 @@ defmodule Disscuss.MixProject do
       {:gettext, "~> 0.20.0"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:ueberauth, "~> 0.10.3"},
+      {:ueberauth_github, "~> 0.7"},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
     ]
   end

@@ -19,6 +19,14 @@ defmodule DisscussWeb.Router do
 
     get "/", PageController, :index
     resources "/topics", TopicController
+
+  end
+
+  scope "/auth", DisscussWeb do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request # /auth/github
+    get "/:provider/callback", AuthController, :callback # /auth/github/callback
   end
 
   
