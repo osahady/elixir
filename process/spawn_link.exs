@@ -23,11 +23,15 @@ end
 
 defmodule Worker do
   def start(fun) do
-    caller = self()
+    parent_caller = self()
 
-    spawn(fn ->
-      send(caller, {self(), fun.()})
-    end)
+    new_spawned_id =
+      spawn(fn ->
+        send(parent_caller, {self(), fun.()})
+      end)
+
+    Process.link(new_spawned_id)
+    new_spawned_id
   end
 
   def wait(spawned_pid) do
@@ -35,7 +39,7 @@ defmodule Worker do
       {^spawned_pid, value} ->
         value
     after
-      2_000 -> "Timeout"
+      2_000 -> {:error, "Receive Timeout"}
     end
   end
 end
