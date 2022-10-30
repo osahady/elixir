@@ -25,13 +25,9 @@ defmodule Worker do
   def start(fun) do
     parent_caller = self()
 
-    new_spawned_id =
-      spawn(fn ->
-        send(parent_caller, {self(), fun.()})
-      end)
-
-    Process.link(new_spawned_id)
-    new_spawned_id
+    spawn_link(fn ->
+      send(parent_caller, {self(), fun.()})
+    end)
   end
 
   def wait(spawned_pid) do
