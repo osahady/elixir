@@ -36,6 +36,9 @@ defmodule Counter do
     {:ok, intial_count}
   end
 
+  # callback which takes: the request,
+  # the caller’s PID, and the existing state;
+  # it is expected to reply by returning a tuple
   def handle_call(:inc, _from, count) do
     updated_count = count + 1
     {:reply, updated_count, updated_count}
