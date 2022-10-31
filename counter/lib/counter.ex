@@ -24,6 +24,15 @@ defmodule Counter do
 
   # server
   def init(intial_count) do
+    intial_count =
+      case Cache.lookup(__MODULE__) do
+        {:ok, count} ->
+          count
+
+        :error ->
+          intial_count
+      end
+
     {:ok, intial_count}
   end
 
@@ -43,5 +52,9 @@ defmodule Counter do
 
   def handle_call({:divide, divisor}, _from, count) do
     {:reply, div(count, divisor), count}
+  end
+
+  def terminate(_reason, count) do
+    Cache.save(__MODULE__, count)
   end
 end
