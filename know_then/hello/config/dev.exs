@@ -3,8 +3,9 @@ import Config
 # Configure your database
 config :hello, Hello.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "doyouknow",
   hostname: "localhost",
+  port: "5433",
   database: "hello_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
