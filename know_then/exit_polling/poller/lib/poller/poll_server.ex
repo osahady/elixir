@@ -25,21 +25,26 @@ defmodule Poller.PollServer do
   end
 
   # server
+
+  @impl true
   def init(district_id) do
     poll = Poll.new(district_id)
     {:ok, poll}
   end
 
+  @impl true
   def handle_call({:question, question}, _from, poll) do
     poll = Poll.add_question(poll, question)
     {:reply, poll, poll}
   end
 
+  @impl true
   def handle_call({:vote, choice_id}, _from, poll) do
     poll = Poll.vote(poll, choice_id)
     {:reply, poll, poll}
   end
 
+  @impl true
   def handle_call({:current_poll}, _from, poll) do
     {:reply, poll, poll}
   end
