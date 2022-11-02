@@ -1,18 +1,14 @@
 defmodule Poller do
-  @moduledoc """
-  Documentation for `Poller`.
-  """
+  use Application
+  alias Poller.PollSupervisor
 
-  @doc """
-  Hello world.
+  def start(_type, _args) do
+    children = [
+      PollSupervisor
+    ]
 
-  ## Examples
+    opts = [strategy: :one_for_one, name: Poller.Supervisor]
 
-      iex> Poller.hello()
-      :world
-
-  """
-  def hello do
-    :world
+    Supervisor.start_link(children, opts)
   end
 end
