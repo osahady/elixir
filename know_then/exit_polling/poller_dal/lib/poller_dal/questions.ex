@@ -3,7 +3,7 @@ defmodule PollerDal.Questions do
   alias PollerDal.Repo
   alias PollerDal.Questions.Question
 
-  def list_questions_by_districts_id(district_id) do
+  def list_questions_by_district_id(district_id) do
     from(
       q in Question,
       where: q.district_id == ^district_id
