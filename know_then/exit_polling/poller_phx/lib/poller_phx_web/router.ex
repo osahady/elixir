@@ -23,12 +23,7 @@ defmodule PollerPhxWeb.Router do
   scope "/districts", PollerPhxWeb do
     pipe_through :browser
 
-    get "/", DistrictController, :index
-    get "/new", DistrictController, :new
-    post "/", DistrictController, :create
-    get "/:id/edit", DistrictController, :edit
-    put "/:id", DistrictController, :update
-    delete "/:id", DistrictController, :delete
+    resources "/", DistrictController, except: [:show]
   end
 
   # Other scopes may use custom stacks.
