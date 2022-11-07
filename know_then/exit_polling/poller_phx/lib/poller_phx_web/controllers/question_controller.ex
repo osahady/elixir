@@ -29,4 +29,39 @@ defmodule PollerPhxWeb.QuestionController do
         render(conn, "new.html", changeset: changeset)
     end
   end
+
+  def edit(conn, %{"district_id" => district_id, "id" => id}) do
+    district = Districts.get_district!(district_id)
+    question = Questions.get_question!(id)
+    changeset = Questions.change_question(question)
+
+    render(conn, "edit.html",
+      changeset: changeset,
+      question: question,
+      district: district
+    )
+  end
+
+  def update(conn, %{"district_id" => district_id, "id" => id, "question" => attrs}) do
+    question = Questions.get_question!(id)
+
+    case Questions.update_question(question, attrs) do
+      {:ok, _question} ->
+        conn
+        |> put_flash(:info, "Question updated successfully")
+        |> redirect(to: Routes.question_path(conn, :index, district_id))
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", changeset: changeset, question: question)
+    end
+  end
+
+  def delete(conn, %{"district_id" => district_id, "id" => id}) do
+    question = Questions.get_question!(id)
+    {:ok, _} = Questions.delete_question(question)
+
+    conn
+    |> put_flash(:info, "Question deleted successfully")
+    |> redirect(to: Routes.question_path(conn, :index, district_id))
+  end
 end
