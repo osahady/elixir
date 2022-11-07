@@ -10,7 +10,9 @@
     <%= for district <- @districts do %>
       
       <tr>
-        <td><%= district.name %></td>
+        <td>
+          <%= link district.name, to: Routes.question_path(@conn, :index, district.id) %>
+        </td>
         <td>
           <%= link to: Routes.district_path(@conn, :edit, district.id) do %>
               <svg style="width: 2.5rem; color: blue;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
