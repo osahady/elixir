@@ -106,6 +106,19 @@
   
 }
 
+.btn{
+  background: #3341cc;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: .75rem;
+}
+
+.btn:hover{
+  background: #3341ff;
+  color: white;
+  
+}
+
 
 
 @keyframes fade-in-scale-keys{

@@ -9,7 +9,7 @@
   <%= error_tag f, :name %>
 
   <div>
-    <%= submit "Save", class: "btn" %>
-    <%= link "Cancel", to: Routes.district_path(@conn, :index), class: "btn-white" %>
+    <%= submit "Save" %>
+    <%= link "Cancel", to: Routes.district_path(@conn, :index) %>
   </div>
 <% end %>

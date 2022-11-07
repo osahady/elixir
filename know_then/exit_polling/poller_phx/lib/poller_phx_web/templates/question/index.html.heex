@@ -17,3 +17,7 @@
     <% end %>
   </tbody>
 </table>
+<div>
+  <%= link "Add Question", to: Routes.question_path(@conn, :new, @district.id), class: "btn"%>
+  <%= link "Cancel", to: Routes.district_path(@conn, :index) %>
+</div>
