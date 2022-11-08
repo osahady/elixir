@@ -10,7 +10,7 @@ defmodule PollerDal.Questions.Question do
     timestamps()
   end
 
-  def changeset(question, attrs) do
+  def changeset(question, attrs \\ %{}) do
     question
     |> cast(attrs, [:description, :district_id])
     |> validate_required([:description, :district_id])

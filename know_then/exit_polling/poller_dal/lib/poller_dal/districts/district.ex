@@ -8,7 +8,7 @@ defmodule PollerDal.Districts.District do
     timestamps()
   end
 
-  def changeset(district, attrs) do
+  def changeset(district, attrs \\ %{}) do
     district
     |> cast(attrs, [:name])
     |> validate_required([:name])
