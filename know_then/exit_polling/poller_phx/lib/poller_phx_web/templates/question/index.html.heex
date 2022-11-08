@@ -11,7 +11,8 @@
     <%= for q <- @questions do %>
       
       <tr>
-        <td><%= q.description %></td>
+        <%!-- <td><%= q.description %> </td> --%>
+        <td><%= link q.description, to: Routes.choice_path(@conn, :index, @district.id, q.id) %></td>
         <td>
           <%= link to: Routes.question_path(@conn, :edit, @district.id, q) do%>
             <svg style="width: 2.5rem; color: blue;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -32,5 +33,5 @@
 </table>
 <div>
   <%= link "Add Question", to: Routes.question_path(@conn, :new, @district.id), class: "btn"%>
-  <%= link "Cancel", to: Routes.district_path(@conn, :index) %>
+  <%= link "Cancel", to: Routes.district_path(@conn, :index), class: "white-btn" %>
 </div>

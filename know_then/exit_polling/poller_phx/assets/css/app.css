@@ -116,7 +116,14 @@
 .btn:hover{
   background: #3341ff;
   color: white;
-  
+}
+
+.white-btn{
+  background: white;
+  color: black;
+  border: 1px solid;
+  padding: 1rem 1.5rem;
+  border-radius: .75rem
 }
 
 
