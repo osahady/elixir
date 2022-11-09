@@ -27,8 +27,7 @@ defmodule PollerPhxWeb.Router do
 
     resources "/:district_id/questions", QuestionController, except: [:show]
 
-    resources "/:district_id/questions/:question_id/choices", ChoiceController,
-      only: [:index, :new, :create, :edit, :delete]
+    resources "/:district_id/questions/:question_id/choices", ChoiceController, except: [:show]
   end
 
   # Other scopes may use custom stacks.

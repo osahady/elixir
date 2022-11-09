@@ -15,8 +15,8 @@
         <td>
           <%= choice.description%>
         </td>
-        <td>party</td>
-        <td>82</td>
+        <td><%= party_description(choice.party) %></td>
+        <td><%= choice.votes %> </td>
         <td>
           <%= link to: Routes.choice_path(@conn, :edit, @district.id, @question.id, choice.id) do %>
               <svg style="width: 2.5rem; color: blue;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
