@@ -1,6 +1,7 @@
 defmodule PollerPhxWeb.AuthController do
-  alias PollerDal.Users
   use PollerPhxWeb, :controller
+
+  alias PollerDal.Users
 
   def new(conn, _params), do: render(conn, "new.html")
 
@@ -40,5 +41,11 @@ defmodule PollerPhxWeb.AuthController do
     conn
     |> put_flash(:error, "Invalid password!")
     |> render("new.html")
+  end
+
+  def delete(conn, _params) do
+    conn
+    |> configure_session(drop: true)
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 end

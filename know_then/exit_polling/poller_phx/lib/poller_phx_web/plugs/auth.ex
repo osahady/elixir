@@ -4,7 +4,6 @@ defmodule PollerPhxWeb.Plugs.Auth do
   import Plug.Conn
   import Phoenix.Controller
 
-  alias Phoenix.LiveView.Plug
   alias PollerPhxWeb.Router.Helpers, as: Routes
   alias PollerDal.Users
 
