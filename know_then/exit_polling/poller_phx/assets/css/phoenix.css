@@ -80,6 +80,12 @@ header nav ul {
   justify-content: space-between;
 }
 
+header nav ul div {
+  display: flex;
+  justify-content: space-around;
+  gap: 3rem;
+}
+
 
 
 

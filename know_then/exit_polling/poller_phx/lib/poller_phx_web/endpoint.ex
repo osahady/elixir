@@ -7,7 +7,8 @@ defmodule PollerPhxWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_poller_phx_key",
-    signing_salt: "YrhwnsWj"
+    signing_salt: "YrhwnsWj",
+    max_age: 365 * 24 * 60 * 60
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
