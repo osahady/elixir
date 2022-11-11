@@ -38,9 +38,11 @@ defmodule PollerPhxWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PollerPhxWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", PollerPhxWeb.Api do
+    pipe_through :api
+
+    get "/districts", DistrictController, :index
+  end
 
   # Enables LiveDashboard only for development
   #
