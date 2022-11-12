@@ -32,6 +32,7 @@ defmodule Poller.PollServer do
     {:ok, poll}
   end
 
+  # {:reply, reply, new_state}. The first element of the tuple, :reply, indicates that the server should send a reply back to the client. The second element, reply, is what will be sent to the client while the third, new_state is the new server state.
   @impl true
   def handle_call({:question, question}, _from, poll) do
     poll = Poll.add_question(poll, question)
