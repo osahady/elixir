@@ -13,6 +13,8 @@ defmodule PollerPhxWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
+    plug PollerPhxWeb.Plugs.Auth
   end
 
   scope "/", PollerPhxWeb do
@@ -45,6 +47,12 @@ defmodule PollerPhxWeb.Router do
     get "/districts/:district_id", DistrictController, :show
     get "/districts/:district_id/questions", QuestionController, :index
     get "questions/:question_id/choices", ChoiceController, :index
+  end
+
+  scope "/api", PollerPhxWeb.Api do
+    pipe_through [:api, :valid_user]
+
+    put "/districts/:district_id/choices/:choice_id", ChoiceController, :vote
   end
 
   # Enables LiveDashboard only for development
