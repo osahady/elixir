@@ -46,8 +46,8 @@ defmodule PollerPhx.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:poller_dal, [path: "../poller_dal"]},
       {:phoenix_ecto, "~> 4.4"},
+      {:poller_dal, [path: "../poller_dal"]},
       {:poller, [path: "../poller"]}
     ]
   end

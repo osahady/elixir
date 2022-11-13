@@ -1,7 +1,7 @@
 defmodule PollerPhxWeb.ChoiceController do
   use PollerPhxWeb, :controller
   alias PollerDal.{Districts, Questions, Choices}
-  alias PollerDal.{Districts.District, Questions.Question, Choices.Choice}
+  alias PollerDal.{Choices.Choice}
 
   def index(conn, %{"district_id" => district_id, "question_id" => question_id}) do
     district = Districts.get_district!(district_id)
