@@ -1,5 +1,6 @@
 defmodule Poller.Poll do
   alias __MODULE__
+  alias Poller.Question
 
   defstruct district_id: nil, questions: [], votes: %{}
 
@@ -9,20 +10,31 @@ defmodule Poller.Poll do
     }
   end
 
-  def add_question(poll, question) do
-    questions = [question | poll.questions]
+  def add_questions(poll, []), do: poll
 
-    votes = init_votes_for_a_question(question)
+  def add_questions(poll, [question | questions]) do
+    votes = init_votes_for_a_question(poll.votes, question)
+    question = Question.new(question)
 
-    poll
-    |> Map.put(:questions, questions)
-    |> Map.put(:votes, votes)
+    poll =
+      add_question(poll, question)
+      |> Map.put(:votes, votes)
+
+    add_questions(poll, questions)
   end
 
-  def init_votes_for_a_question(question) do
+  def add_question(poll, question) do
+    questions = [question | poll.questions]
+    Map.put(pool, :questions, questions)
+  end
+
+  def init_votes_for_a_question(votes, question) do
     question.choices
-    |> Enum.map(&{&1.id, 0})
-    |> Enum.into(%{})
+    |> Enum.map(fn choice ->
+      votes = choice.votes || 0
+      {choice.id, votes}
+    end)
+    |> Enum.into(votes)
   end
 
   def vote(poll, choice_id) do

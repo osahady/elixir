@@ -1,6 +1,9 @@
 defmodule Poller.PollServer do
   use GenServer
+
   alias Poller.Poll
+  alias PollerDal.Questions
+
   # client
   def start_link(district_id) do
     name = district_name(district_id)
@@ -28,8 +31,17 @@ defmodule Poller.PollServer do
 
   @impl true
   def init(district_id) do
-    poll = Poll.new(district_id)
+    poll = init_poll(district_id)
+
     {:ok, poll}
+  end
+
+  defp init_poll(district_id) do
+    questions = Questions.list_questions_by_district_id(district_id)
+
+    district_id
+    |> Poll.new()
+    |> Poll.add_questions(questions)
   end
 
   # {:reply, reply, new_state}. The first element of the tuple, :reply, indicates that the server should send a reply back to the client. The second element, reply, is what will be sent to the client while the third, new_state is the new server state.

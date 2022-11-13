@@ -8,7 +8,7 @@ defmodule PollerDal.Questions.Question do
     field(:description, :string)
 
     belongs_to(:district, District)
-    has_many(:choice, Choice)
+    has_many(:choices, Choice)
 
     timestamps()
   end
