@@ -25,7 +25,7 @@ defmodule Poller.Poll do
 
   def add_question(poll, question) do
     questions = [question | poll.questions]
-    Map.put(pool, :questions, questions)
+    Map.put(poll, :questions, questions)
   end
 
   def init_votes_for_a_question(votes, question) do
