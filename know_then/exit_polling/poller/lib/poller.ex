@@ -5,6 +5,7 @@ defmodule Poller do
   def start(_type, _args) do
     children = [
       PollSupervisor
+      # {Phoenix.PubSub.PG2, name: Poller.PubSub.server_name()}
     ]
 
     opts = [strategy: :one_for_one, name: Poller.Supervisor]
