@@ -9,6 +9,14 @@
       </li>
       <li>
         <%= if @current_user do %>
+          <%= link "Poll", to: Routes.app_path(@conn, :index, ["polls"]) %>
+        <% end%>
+      </li>
+      <li>
+        <%= link "Results", to: Routes.app_path(@conn, :index, ["results"]) %>
+      </li>
+      <li>
+        <%= if @current_user do %>
           <%= link "Logout", to: Routes.auth_path(@conn, :delete), method: :delete %>
         <% else %>
           <%= link "Login", to: Routes.auth_path(@conn, :new) %>
